@@ -1,0 +1,26 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from(components.java)
+        }
+    }
+    repositories {
+        maven {
+            url = uri("${buildDir}/repo") // Local repo for testing
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
